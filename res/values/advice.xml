@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="heavy">有点肥，你是高富帅么？</string>
+	<string name="standard">体重合适，继续挥霍吧，骚年</string>
+    <string name="light">太轻了，要增肥啊，哥</string>
+	
+</resources>

@@ -5,11 +5,12 @@ import java.text.DecimalFormat;
 import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+@SuppressLint("ShowToast")
 public class Home extends Activity {
 	
 	private long value_sex=0;
@@ -84,7 +86,7 @@ public class Home extends Activity {
 	//Toast.makeText(Home.this, "Your BMI is"+nf.format(BMI)+"性别\n"+nf.format(value_sex)+value, 3).show();
 	Toast.makeText(Home.this, value, Toast.LENGTH_LONG).show();
 	//fieldsuggest.setText(value);
-	
+	/*
 	new AlertDialog.Builder(Home.this)
 	.setTitle("About")
 	.setMessage("Version 0.01")
@@ -110,15 +112,56 @@ public class Home extends Activity {
 				}
 			})
 	.show();
-	
+	*/
 	}
 	};
+	
+	private static final int MENU_ABOUT= Menu.FIRST;
+	private static final int MENU_QUIT = Menu.FIRST+1;
 	
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {
 		// Inflate the menu; this adds items to the action bar if it is present.
-//		getMenuInflater().inflate(R.menu.home, menu);
+		getMenuInflater().inflate(R.menu.home, menu);
+		menu.add(0, MENU_ABOUT, 0, "About")
+		.setIcon(android.R.drawable.ic_dialog_info);
+		menu.add(0, MENU_QUIT,0,"Home");
 		return true;
 	}
+
+	/* (non-Javadoc)
+	 * @see android.app.Activity#onMenuItemSelected(int, android.view.MenuItem)
+	 */
+	@Override
+	public boolean onMenuItemSelected(int featureId, MenuItem item) {
+		// TODO Auto-generated method stub
+		switch(item.getItemId())
+		{
+		case MENU_ABOUT:
+			new AlertDialog.Builder(Home.this)
+			.setTitle("About")
+			.setMessage("Version 0.01")
+			.setPositiveButton("确认",
+			 new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub	
+				}
+			})
+			.show();
+			break;
+		case MENU_QUIT:
+			finish();
+			break;
+		case R.id.action_search:
+		case R.id.action_settings:
+		default:
+			Toast.makeText(Home.this, item.toString(), 10).show();
+		}
+		return super.onMenuItemSelected(featureId, item);
+	}
+
+	
 
 }

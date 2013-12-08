@@ -4,6 +4,10 @@ import java.text.DecimalFormat;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
@@ -14,7 +18,6 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 public class Home extends Activity {
@@ -81,7 +84,7 @@ public class Home extends Activity {
 	//Toast.makeText(Home.this, "Your BMI is"+nf.format(BMI)+"性别\n"+nf.format(value_sex)+value, 3).show();
 	Toast.makeText(Home.this, value, Toast.LENGTH_LONG).show();
 	//fieldsuggest.setText(value);
-	/*
+	
 	new AlertDialog.Builder(Home.this)
 	.setTitle("About")
 	.setMessage("Version 0.01")
@@ -93,8 +96,21 @@ public class Home extends Activity {
 			// TODO Auto-generated method stub	
 		}
 	})
+	.setNegativeButton("首页",
+			new DialogInterface.OnClickListener() {
+				
+				@Override
+				public void onClick(DialogInterface dialog, int which) {
+					// TODO Auto-generated method stub
+					
+					Uri url=Uri.parse("http://www.sina.com.cn");
+					Intent intent=new Intent(Intent.ACTION_VIEW,url);
+					startActivity(intent);
+					
+				}
+			})
 	.show();
-	*/
+	
 	}
 	};
 	
